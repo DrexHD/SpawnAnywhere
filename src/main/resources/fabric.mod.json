@@ -3,7 +3,7 @@
 	"id": "spawnanywhere",
 	"version": "${version}",
 	"name": "SpawnAnywhere",
-	"description": "Change your world spawn/respawn location to anywhere.",
+	"description": "Set your world spawn/respawn location to anywhere.",
 	"authors": [
 		"Drex"
 	],

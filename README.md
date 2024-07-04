@@ -1,7 +1,7 @@
 [![Discord](https://img.shields.io/discord/904419828192927885.svg?logo=discord)](https://discord.gg/HeZayd6SxF)
 
 # SpawnAnywhere
-Change your world spawn/respawn location to anywhere.
+Set your world spawn/respawn location to anywhere.
 
 ## Commands
 - `/spawnanywhere setspawn` - Sets the initial (first join) spawn location
