@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "spawnanywhere",
+	"version": "${version}",
+	"name": "SpawnAnywhere",
+	"description": "Change your world spawn/respawn location to anywhere.",
+	"authors": [
+		"Drex"
+	],
+	"license": "MIT",
+	"icon": "assets/spawnanywhere/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.drex.spawnanywhere.SpawnAnywhere"
+		]
+	},
+	"mixins": [
+		"spawnanywhere.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"java": ">=21"
+	}
+}
