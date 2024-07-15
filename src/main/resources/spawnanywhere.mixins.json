@@ -3,7 +3,6 @@
   "package": "me.drex.spawnanywhere.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "CommandsMixin",
     "PlayerListMixin",
     "ServerPlayerMixin"
   ],
