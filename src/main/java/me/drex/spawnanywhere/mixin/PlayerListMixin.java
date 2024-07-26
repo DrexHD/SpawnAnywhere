@@ -2,8 +2,10 @@ package me.drex.spawnanywhere.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import me.drex.spawnanywhere.SpawnAnywhere;
 import me.drex.spawnanywhere.data.Location;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -47,6 +49,10 @@ public abstract class PlayerListMixin {
         return spawnDimension.orElseGet(original::call);
     }
 
+    /**
+     * We need to inject late, for compat with
+     * <a href="https://github.com/Wesley1808/ServerCore/blob/main/common/src/main/java/me/wesley1808/servercore/mixin/optimizations/players/PlayerListMixin.java">ServerCore's patch</a>
+     */
     @Inject(
         method = "placeNewPlayer",
         at = @At(
@@ -55,7 +61,13 @@ public abstract class PlayerListMixin {
             shift = At.Shift.AFTER
         )
     )
-    private void replaceSpawnLocationRotation(Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci) {
+    private void replaceSpawnLocationRotation(
+        Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci,
+        @Local Optional<CompoundTag> optionalData
+    ) {
+        if (optionalData.isPresent()) {
+            return;
+        }
         Optional<Location> optional = SpawnAnywhere.DATA.spawnLocation();
         Optional<ResourceKey<Level>> spawnDimension = optional.map(Location::dimension);
         if (spawnDimension.isPresent()) {
