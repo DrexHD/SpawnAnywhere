@@ -3,13 +3,12 @@ package me.drex.spawnanywhere.data;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 
 public record Location(ResourceKey<Level> dimension, BlockPos pos, float yRot, float xRot) {
@@ -26,8 +25,8 @@ public record Location(ResourceKey<Level> dimension, BlockPos pos, float yRot, f
         this(entity.level().dimension(), entity.blockPosition(), entity.getYRot(), entity.getXRot());
     }
 
-    public DimensionTransition dimensionTransition(MinecraftServer server, DimensionTransition.PostDimensionTransition postDimensionTransition) {
+    public TeleportTransition dimensionTransition(MinecraftServer server, TeleportTransition.PostTeleportTransition postTeleportTransition) {
         ServerLevel level = server.getLevel(dimension());
-        return new DimensionTransition(level, pos().getCenter(), Vec3.ZERO, yRot(), xRot(), postDimensionTransition);
+        return new TeleportTransition(level, pos().getCenter(), Vec3.ZERO, yRot(), xRot(), postTeleportTransition);
     }
 }
