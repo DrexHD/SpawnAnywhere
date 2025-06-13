@@ -8,8 +8,6 @@ import me.drex.spawnanywhere.data.Location;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.players.PlayerList;
@@ -23,19 +21,6 @@ import java.util.Optional;
 
 @Mixin(PlayerList.class)
 public abstract class PlayerListMixin {
-    @WrapOperation(
-        method = "getPlayerForLogin",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/server/MinecraftServer;overworld()Lnet/minecraft/server/level/ServerLevel;"
-        )
-    )
-    public ServerLevel replaceSpawnDimension(MinecraftServer server, Operation<ServerLevel> original) {
-        Optional<Location> optional = SpawnAnywhere.DATA.spawnLocation();
-        Optional<ServerLevel> spawnDimension = optional.map(location -> server.getLevel(location.dimension()));
-        return spawnDimension.orElseGet(() -> original.call(server));
-    }
-
     @WrapOperation(
         method = "placeNewPlayer",
         at = @At(

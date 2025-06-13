@@ -26,10 +26,10 @@ import java.util.Optional;
 public abstract class ServerPlayerMixin extends Player {
     @Shadow
     @Final
-    public MinecraftServer server;
+    private MinecraftServer server;
 
-    public ServerPlayerMixin(Level level, BlockPos blockPos, float f, GameProfile gameProfile) {
-        super(level, blockPos, f, gameProfile);
+    public ServerPlayerMixin(Level level, GameProfile gameProfile) {
+        super(level, gameProfile);
     }
 
     @Inject(method = "adjustSpawnLocation", at = @At("HEAD"), cancellable = true)
