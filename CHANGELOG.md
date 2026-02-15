@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-02-15
+### Changed
+- Updated to 1.21.11
+
 ## [1.1.1] - 2024-07-15
 ### Fixed
 - Spawn rotation being applied on login

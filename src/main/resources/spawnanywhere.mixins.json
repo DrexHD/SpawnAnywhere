@@ -1,13 +1,12 @@
 {
-  "required": true,
-  "package": "me.drex.spawnanywhere.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "PlayerListMixin",
-    "ServerConfigurationPacketListenerImplMixin",
-    "ServerPlayerMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+	"required": true,
+	"package": "me.drex.spawnanywhere.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"PrepareSpawnTaskMixin",
+		"ServerPlayerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
 	}
 }

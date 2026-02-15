@@ -39,7 +39,7 @@ public class SpawnAnywhereCommand {
         Location location = new Location(player);
         SpawnAnywhere.DATA = function.apply(SpawnAnywhere.DATA, location);
         BlockPos pos = location.pos();
-        context.getSource().sendSuccess(() -> Component.literal("Set %s location to %d, %d, %d [%.1f, %.1f] in %s".formatted(type, pos.getX(), pos.getY(), pos.getZ(), location.yRot(), location.xRot(), location.dimension().location())), true);
+        context.getSource().sendSuccess(() -> Component.literal("Set %s location to %d, %d, %d [%.1f, %.1f] in %s".formatted(type, pos.getX(), pos.getY(), pos.getZ(), location.yRot(), location.xRot(), location.dimension().identifier())), true);
         SpawnAnywhere.save(context.getSource().getServer());
         return 1;
     }
