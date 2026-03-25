@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 @Mixin(PrepareSpawnTask.class)
 public abstract class PrepareSpawnTaskMixin {
     @WrapOperation(
-        method = "method_72293",
+        method = "lambda$start$3",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/server/level/PlayerSpawnFinder;findSpawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Ljava/util/concurrent/CompletableFuture;"
@@ -32,7 +32,7 @@ public abstract class PrepareSpawnTaskMixin {
     }
 
     @WrapOperation(
-        method = "method_74855",
+        method = "lambda$start$2",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/world/level/storage/LevelData$RespawnData;dimension()Lnet/minecraft/resources/ResourceKey;"
