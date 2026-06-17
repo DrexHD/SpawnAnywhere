@@ -28,7 +28,7 @@ public abstract class PrepareSpawnTaskMixin {
     )
     private static CompletableFuture<Vec3> replaceSpawnLocation(ServerLevel serverLevel, BlockPos blockPos, Operation<CompletableFuture<Vec3>> original) {
         Optional<Location> optional = SpawnAnywhere.DATA.spawnLocation();
-        return optional.map(location -> CompletableFuture.completedFuture(location.pos().getBottomCenter())).orElseGet(() -> original.call(serverLevel, blockPos));
+        return optional.map(location -> CompletableFuture.completedFuture(Vec3.atBottomCenterOf(location.pos()))).orElseGet(() -> original.call(serverLevel, blockPos));
     }
 
     @WrapOperation(

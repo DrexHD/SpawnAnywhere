@@ -27,6 +27,6 @@ public record Location(ResourceKey<Level> dimension, BlockPos pos, float yRot, f
 
     public TeleportTransition dimensionTransition(MinecraftServer server, TeleportTransition.PostTeleportTransition postTeleportTransition) {
         ServerLevel level = server.getLevel(dimension());
-        return new TeleportTransition(level, pos().getBottomCenter(), Vec3.ZERO, yRot(), xRot(), postTeleportTransition);
+        return new TeleportTransition(level, Vec3.atBottomCenterOf(pos()), Vec3.ZERO, yRot(), xRot(), postTeleportTransition);
     }
 }
